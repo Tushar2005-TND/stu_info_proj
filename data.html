@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompLog - Student Data</title>
+    <link rel="stylesheet" href="data.css">
+</head>
+
+<body>
+    <header>
+        <div class="top-row">
+            <div class="logo">
+                <img src="images\logo.png" alt="Logo">
+                <span>CompLog</span>
+            </div>
+            <div class="admin-info">
+                <span >Admin Name</span>
+                <img src="images\profile.jpg" alt="Profile Picture"
+                    style="width: 20px;margin-top: 10px; height: 20px; border-radius: 50%;">
+            </div>
+        </div>
+        <div class="nav-bar">
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">Students</a>
+                <a href="#">Competition</a>
+                <a href="#">Reports</a>
+                <a href="#">Login</a>
+            </nav>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+            </div>
+        </div>
+    </header>
+
+    <main class="mcont">
+
+
+        <div class="fcont">
+            <div class="filters">
+                <h3>Filters</h3>
+                <label for="year">Year</label>
+                <select id="year">
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                </select>
+
+                <label for="course">Course</label>
+                <select id="course">
+                    <option value="bca">B.C.A</option>
+                    <option value="bsc">B.Sc</option>
+                </select>
+
+                <label for="department">Department</label>
+                <select id="department">
+                    <option value="cs">C.S</option>
+                    <option value="arts">Arts</option>
+                    <option value="science">Science</option>
+                </select>
+                <div class="dbtc">
+                    <button class="dbt" id="download-btn">Download Format</button>
+                </div>
+                <div class="upload-section">
+                    <input type="file" id="upload-file" accept=".xlsx">
+                    <button id="upload-btn">Upload</button>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="dcont">
+
+
+
+
+
+            <div class="card">
+                <div class="hc">
+                    <img class="profile-pic" src="images\pic.jpeg" alt="Profile Picture">
+                    <div class="name">Kermit the guy</div>
+                </div>
+
+                <div class="details">
+                    <div><strong>Student ID:</strong> S12345</div>
+                    <div><strong>Course:</strong> Bachelor of Science</div>
+                    <div><strong>Class:</strong> 10A</div>
+                    <div><strong>Division:</strong> Science</div>
+                    <div><strong>Roll No:</strong> 21</div>
+                </div>
+
+                <div class="status first"> 1st Place</div>
+
+                <div class="contact">
+                    <div><strong>Email:</strong> Kermitcrab@gmail.com</div>
+                    <div><strong>Phone:</strong> 1755206749</div>
+                </div>
+
+                <span class="edit-icon">
+                    <img class="eicon" src="images\edit.png" alt="edit">
+                </span>
+            </div>
+
+            <div class="card">
+                <div class="hc">
+                    <img class="profile-pic" src="images\pic.jpeg" alt="Profile Picture">
+                    <div class="name">Kermit the guy</div>
+                </div>
+
+                <div class="details">
+                    <div><strong>Student ID:</strong> S12345</div>
+                    <div><strong>Course:</strong> Bachelor of Science</div>
+                    <div><strong>Class:</strong> 10A</div>
+                    <div><strong>Division:</strong> Science</div>
+                    <div><strong>Roll No:</strong> 21</div>
+                </div>
+
+                <div class="status first"> 2nd Place</div>
+                <div class="contact">
+                    <div><strong>Email:</strong> Kermitcrab@gmail.com</div>
+                    <div><strong>Phone:</strong> 1755206749</div>
+                </div>
+
+                <span class="edit-icon">
+                    <img class="eicon" src="images\edit.png" alt="edit">
+                </span>
+            </div>
+        </div>
+
+    </main>
+
+
+
+    <script>
+        document.getElementById("download-btn").addEventListener("click", function () {
+            const studentData = [
+                {
+                    "Student ID": "S12345",
+                    "Name": "Kermit the guy",
+                    "Course": "Bachelor of Science",
+                    "Class": "10A",
+                    "Division": "Science",
+                    "Roll No": "21",
+                    "Status": "🥇 1st Place",
+                    "Email": "Kermitcrab@gmail.com",
+                    "Phone": "1755206749"
+                }
+            ];
+
+            const ws = XLSX.utils.json_to_sheet(studentData);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Student Data");
+            XLSX.writeFile(wb, "Student_Data.xlsx");
+        });
+        
+    document.getElementById("upload-btn").addEventListener("click", function () {
+        const fileInput = document.getElementById("upload-file");
+        if (!fileInput.files.length) {
+            alert("Please select a file.");
+            return;
+        }
+        
+        const file = fileInput.files[0];
+        if (!file.name.endsWith(".xlsx")) {
+            alert("Only .xlsx files are allowed.");
+            return;
+        }
+        
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: "array" });
+            const sheet = workbook.Sheets[workbook.SheetNames[0]];
+            const jsonData = XLSX.utils.sheet_to_json(sheet);
+            
+            const requiredFields = ["Name", "Student ID", "Course", "Class", "Division", "Roll No", "Rank", "Email", "Phone"];
+            for (const row of jsonData) {
+                for (const field of requiredFields) {
+                    if (!row[field]) {
+                        alert("Missing value in " + field);
+                        return;
+                    }
+                }
+            }
+            
+            displayData(jsonData);
+        };
+        
+        reader.readAsArrayBuffer(file);
+    });
+    
+    function displayData(data) {
+        const container = document.querySelector(".dcont");
+        container.innerHTML = ""; 
+        
+        data.forEach(student => {
+            const card = document.createElement("div");
+            card.className = "card";
+            
+            card.innerHTML = `
+                <div class="hc">
+                    <img class="profile-pic" src="images/pic.jpeg" alt="Profile Picture">
+                    <div class="name">${student.Name}</div>
+                </div>
+                <div class="details">
+                    <div><strong>Student ID:</strong> ${student["Student ID"]}</div>
+                    <div><strong>Course:</strong> ${student.Course}</div>
+                    <div><strong>Class:</strong> ${student.Class}</div>
+                    <div><strong>Division:</strong> ${student.Division}</div>
+                    <div><strong>Roll No:</strong> ${student["Roll No"]}</div>
+                </div>
+                <div class="status">${student.Rank}</div>
+                <div class="contact">
+                    <div><strong>Email:</strong> ${student.Email}</div>
+                    <div><strong>Phone:</strong> ${student.Phone}</div>
+                </div>
+            `;
+            
+            container.appendChild(card);
+        });
+    }
+
+
+    </script>
+</body>
+
+</html>
