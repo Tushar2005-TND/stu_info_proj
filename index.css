@@ -46,7 +46,46 @@
     }
 }
     
+@media (max-width: 651px) {
+    
 
+    /* Adjust the dashboard title for smaller screens */
+    .dashboard-title {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    /* Adjust category tiles for better stacking */
+    .category-tile {
+        width: 100%;
+        padding: 15px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* Ensure modal content fits within small screens */
+    .modal-content {
+        width: 90%;
+        padding: 15px;
+    }
+    
+   
+    
+}
+@media (max-width: 545px) {
+
+    .add-category-btn {
+        
+       margin-top: 50px;
+       margin-right: 100px; 
+
+        
+        
+    }
+
+
+}
 
 
 

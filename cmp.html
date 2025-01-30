@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompLog - Student Data</title>
+    <link rel="stylesheet" href="dta.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="data.css"
+</head>
+
+<body>
+    <header>
+        <div class="top-row">
+            <div class="logo">
+                <img src="images/logo.png" alt="Logo">
+                <span>CompLog</span>
+            </div>
+            <div class="admin-info">
+                <span>Admin Name</span>
+                <img src="images/profile.jpg" alt="Profile Picture"
+                    style="width: 20px; margin-top: 10px; height: 20px; border-radius: 50%;">
+            </div>
+        </div>
+        <div class="nav-bar">
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">Students</a>
+                <a href="#">Login</a>
+            </nav>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+            </div>
+        </div>
+    </header>
+   
+        
+
+
+    <main class="mcont">
+        <button class="add-category-btn" onclick="openModal()">Add New competition</button>
+
+        <div class="dashboard-title">Competition Dashboard</div>
+
+        <div class="category-tiles" id="categoryTiles">
+            <!-- Category Tiles Will Be Generated Here -->
+        </div>
+        <div class="modal" id="categoryModal" style="display: none;">
+            <div class="modal-content">
+                <h3>Add Competition</h3>
+                <input type="text" id="competitionName" placeholder="Enter competition name">
+                <input type="text" id="categoryName" placeholder="Enter category">
+                <input type="text" id="collegeName" placeholder="Enter college name">
+                <div>
+                    <button onclick="saveCategory()">Save</button>
+                    <button onclick="closeModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <div class="fcont">
+            <div class="filters">
+                <h3>Filters</h3>
+                <label for="year">Year</label>
+                <select id="year">
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                </select>
+
+                <label for="category">Category</label>
+                <select id="category">
+                    <option value="sports">Sports</option>
+                    <option value="arts">Arts</option>
+                    <option value="science">Science</option>
+                </select>
+
+                <label for="college">College Name</label>
+                <select id="college">
+                    <option value="college1">College 1</option>
+                    <option value="college2">College 2</option>
+                </select>
+            </div>
+        </div>
+
+    </main>
+
+    <div id="competitionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Add Competition</h2>
+            <label for="compName">Competition Name:</label>
+            <input type="text" id="compName">
+            <label for="compCategory">Category:</label>
+            <input type="text" id="compCategory">
+            <label for="compCollege">College Name:</label>
+            <input type="text" id="compCollege">
+            <button onclick="addCompetition()">Add</button>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
