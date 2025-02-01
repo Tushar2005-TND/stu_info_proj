@@ -1,92 +1,7 @@
+/* Import styles from styles2.css */
+@import url('styles2.css');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-@media (max-width: 768px) {
-    /* Ensure the navigation and admin info stack properly */
-    header .nav-bar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    
-
-    /* Move admin name and icon below the menu */
-    header .admin-info{
-        width: 100%;
-        display:flex;
-        justify-content:right;
-        margin-top: 10px;
-    }
-
-    /* Adjust the search bar */
-    header .nav-bar .search-bar{
-        width: 100%;
-        margin-top: 10px;
-        display: flex;
-        justify-content: center;
-    }
-
-    header .nav-bar .search-bar input {
-        width: 80%;
-        padding: 8px;
-        font-size: 14px;
-    }
-    .category-tile {
-        width: 100%;
-    }
-
-    .add-category-btn {
-        top: 20px;
-        right: 20px;
-        display: flex;
-    }
-}
-
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
-}
-
-header {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
-}
-
-header .logo img {
-    margin-left: 3px;
-    height: 50px;
-}
-
-.college-logo {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: white;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.college-logo img {
-    height: 50px;
-}
-
+/* Center login container */
 .login-container {
     background: white;
     padding: 40px;
@@ -94,17 +9,48 @@ header .logo img {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
+    margin: 80px auto 50px auto; /* Added more margin at the top */
 }
 
+/* Center header elements */
+header .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header .logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+header h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+header .nav-bar {
+    text-align: center;
+}
+
+header .nav-bar nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Login form styles */
 .login-container h2 {
     text-align: center;
     margin-bottom: 20px;
+    color: #333;
 }
 
 .login-container label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
+    color: #333;
 }
 
 .login-container input {
@@ -125,24 +71,47 @@ header .logo img {
     border-radius: 10px;
     cursor: pointer;
     font-weight: bold;
+    transition: background-color 0.3s ease;
 }
 
 .login-container button:hover {
     background: #2575fc;
 }
 
+/* Responsive styles */
 @media (max-width: 768px) {
-    body {
-        padding: 10px;
+    main.mcont {
+      flex-direction: column;
     }
-
-    .login-container {
-        padding: 20px;
-        max-width: 100%;
+  
+    .filters {
+      max-width: 100%;
     }
-
-    .college-logo {
-        top: 5px;
-        right: 5px;
+  
+    .competition-dashboard {
+      width: 100%;
     }
-}
+  
+    header .nav-bar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    header .admin-info {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 10px;
+    }
+  
+    header .nav-bar .search-bar {
+      width: 100%;
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+    }
+  
+    header .nav-bar .search-bar input {
+      width: 80%;
+    }
+  }
