@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CompLog - Student Data</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles2.css">
 </head>
 <body>
     <header>
         <div class="top-row">
             <div class="logo">
-                <img src="logo.png" alt="Logo">
-                <span>CompLog</span>
+                <img src="logo.png" alt="Logo" style="border-radius: 10px;">
+                <span><b>CompLog</b></span>
             </div>
             <div class="admin-info">
-                <span>Admin Name</span>
-                <img src="images/profile.jpg" alt="Profile Picture" style="width: 20px; height: 20px; border-radius: 50%;">
+                <span><b>Admin Name</b></span>
+                <img src="profile.jpg" alt="Profile Picture" style="width: 20px; height: 20px; border-radius: 50%;">
             </div>
         </div>
         <div class="nav-bar">
@@ -55,11 +55,13 @@
 
         <div class="competition-dashboard">
             <h2>Competition Dashboard</h2>
-            <button class="add-category-btn" onclick="openModal()">Add New Competition</button>
-
             <div class="category-tiles" id="categoryTiles">
                 <!-- Category Tiles Will Be Generated Here -->
             </div>
+        </div>
+
+        <div class="add-competition-container">
+            <button class="add-category-btn" onclick="openModal()">Add New Competition</button>
         </div>
     </main>
 
@@ -74,7 +76,7 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script2.js"></script>
 </body>
 </html>
 
